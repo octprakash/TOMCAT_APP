@@ -1,0 +1,8 @@
+FROM devops-base-image:v1
+EXPOSE 8080
+RUN yum install git -y \
+    && git clone https://github.com/octprakash/TOMCAT_APP.git \
+    && cd TOMCAT_APP \
+    && mvn clean install \
+    && mv target/*.war /opt/tomcat/webapps/
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
